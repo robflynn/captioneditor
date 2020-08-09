@@ -1,9 +1,11 @@
 <script>
 import Controls from "@lib/components/controls.vue"
+import CaptioningView from "@lib/components/captioning_view.vue"
 
 export default {
   components: {
-    Controls
+    Controls,
+    CaptioningView,
   }
 }
 </script>
@@ -12,8 +14,7 @@ export default {
   <div class="captioneditor">
     <div class="col">
       <div class="row work-area">
-        <div>Left</div>
-        <div>Right</div>
+        <CaptioningView />
       </div>
       <div class="row control-area">
         <Controls />
