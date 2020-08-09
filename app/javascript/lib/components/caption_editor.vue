@@ -35,6 +35,7 @@ export default {
 
   .work-area {
     flex: 80;
+    max-height: 80%;
     background: green;
   }
 
