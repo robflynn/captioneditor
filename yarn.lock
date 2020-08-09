@@ -4146,6 +4146,11 @@ load-json-file@^1.0.0:
     pinkie-promise "^2.0.0"
     strip-bom "^2.0.0"
 
+load-script2@^2.0.1:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/load-script2/-/load-script2-2.0.5.tgz#e947147915484bd8f5e60b95846885e1482d8aa5"
+  integrity sha512-us9ph1JbJukMCIj4Wz9yjGSsBZ3CAlvFYu2JnQ+5RFoepx0DOT0NV9EAxCRoefCtgumjPkD4+555uz4fenUfxg==
+
 loader-runner@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-2.4.0.tgz#ed47066bfe534d7e84c4c7b9998c2a75607d9357"
@@ -7627,3 +7632,10 @@ yargs@^13.3.2:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^13.1.2"
+
+yt-player@^3.4.3:
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/yt-player/-/yt-player-3.4.3.tgz#88c0f2fb9a5c7b85a75930dee81bf3aa21480393"
+  integrity sha512-Ke5oM+qW8CR6aaK40mTxBff3hS4DXjyfmFkjg3eoaGt8fWQGyKFOFIpZqzNTR5c7Lu+xAG9SIvxCvbBPhCBbPg==
+  dependencies:
+    load-script2 "^2.0.1"

@@ -15,12 +15,12 @@ export default {
 </script>
 
 <template>
-  <ul class="caption-list" :classes="classes">
-    <li v-for="(caption, index) in this.captions" :key="caption.id" class="caption-row">
+  <ul class="caption-list" :classes="classes" aria-label="caption list">
+    <li v-for="(caption, index) in this.captions" :key="caption.id" class="caption-row" tabindex="0" aria-label="caption block">
       <div class="caption">
         <header>
           <span class="index">{{ index + 1}}</span>
-          <div class="buttons">
+          <div class="buttons" aria-label="caption options">
             <button type="button">X</button>
           </div>
         </header>
