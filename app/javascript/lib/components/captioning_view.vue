@@ -16,6 +16,10 @@ export default {
     })
 
     player.load('4IP_E7efGWE')
+
+    this.$root.$on('uiPlayVideo', () => {
+      player.play()
+    })
   },
 
   data() {

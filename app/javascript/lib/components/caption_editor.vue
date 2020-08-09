@@ -6,7 +6,7 @@ export default {
   components: {
     Controls,
     CaptioningView,
-  }
+  },
 }
 </script>
 
