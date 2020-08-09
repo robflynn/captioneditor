@@ -59,4 +59,9 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # I'll create assets manually, as I'll be using vue and won't always
+  # need them.
+  config.generators.assets = false
+  config.generators.helper = false
 end
