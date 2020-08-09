@@ -36,11 +36,12 @@ export default {
   .work-area {
     flex: 80;
     max-height: 80%;
-    background: green;
+
+    background: #444;
   }
 
   .control-area {
-    flex: 125px;
-    background: red;
+    min-height: 125px;
+    background: #444;
   }
 </style>

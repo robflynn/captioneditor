@@ -27,5 +27,7 @@ html,body {
 .caped-app {
   width: 100%;
   height: 100%;
+
+  background: #444;
 }
 </style>

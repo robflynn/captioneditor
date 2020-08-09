@@ -48,8 +48,11 @@ export default {
 <template>
   <div class="row captioning-view">
     <div>Left</div>
-    <div class="full-height">
-      <ul class="caption-list full-height scroll-y">
+    <div class="full-height col">
+      <div>
+        Font controls and stuff here
+      </div>
+      <ul class="caption-list scroll-y">
         <li v-for="(caption, index) in this.captions" :key="caption.id" class="caption-row">
           <div class="caption">
             <header>
@@ -75,12 +78,10 @@ export default {
 <style lang="scss" scoped>
 $padding: 5px;
 $radius: $padding;
-$captionBackground: gray;
+$captionBackground: #777;
 
 .captioning-view {
   width: 100%;
-
-  background: purple;
 
   & > div {
     flex: 50;
@@ -91,10 +92,8 @@ $captionBackground: gray;
   }
 
   .caption-list {
-    background: orange;
-
     li {
-      margin: 5px;
+      margin: 10px;
     }
 
     .caption {
@@ -134,6 +133,7 @@ $captionBackground: gray;
       &--content {
         padding: $padding;
         padding-left: 40px;
+        color: #e5e5e5;
       }
 
       footer {
@@ -146,12 +146,16 @@ $captionBackground: gray;
         padding-left: $padding * 2;
         padding-right: $padding * 2;
 
+        font-weight: bold;
+        letter-spacing: 2px;
+        font-size: 1.0em;
+
         .in-time {
-          color: green;
+          color: #00ee00;
         }
 
         .out-time {
-          color: red;
+          color: #df0000;
         }
       }
     }
