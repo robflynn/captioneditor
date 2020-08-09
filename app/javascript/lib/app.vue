@@ -1,5 +1,11 @@
 <script>
+import CaptionEditor from "@lib/components/caption_editor.vue"
+
 export default {
+  components: {
+    CaptionEditor
+  },
+
   mounted() {
     console.log('app mounted')
   }
@@ -7,13 +13,19 @@ export default {
 </script>
 
 <template>
-  <div>
-    Hello, I am the application!
+  <div class="caped-app">
+    <CaptionEditor />
   </div>
 </template>
 
-<style scoped>
-  div {
-    background: red;
-  }
+<style>
+html,body {
+  width: 100%;
+  height: 100%;
+}
+
+.caped-app {
+  width: 100%;
+  height: 100%;
+}
 </style>
