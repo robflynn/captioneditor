@@ -1,5 +1,6 @@
 <script>
 import CaptionList from "@lib/components/caption_list.vue"
+import { mapState } from "vuex"
 
 const YTPlayer = require('yt-player')
 
@@ -8,22 +9,36 @@ export default {
     CaptionList
   },
 
-  mounted() {
-    let url = 'https://www.youtube.com/watch?v=4IP_E7efGWE'
+  computed: {
+    ...mapState(['videoId'])
+  },
 
-    let player = new YTPlayer("#player-render-area", {
+  watch: {
+    videoId() {
+      this.player.load(this.videoId)
+    }
+  },
+
+  mounted() {
+    this.player = new YTPlayer("#player-render-area", {
       width: '100%'
     })
 
-    player.load('4IP_E7efGWE')
+    this.player.load(this.videoId)
 
     this.$root.$on('uiPlayVideo', () => {
-      player.play()
+      this.player.play()
+    })
+
+    this.$root.$on('uiPauseVideo', () => {
+      this.player.pause()
     })
   },
 
   data() {
     return {
+      player: null,
+
       captions: [
         {
           id: 1,

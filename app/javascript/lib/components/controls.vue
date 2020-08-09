@@ -1,9 +1,8 @@
 <script>
 export default {
   methods: {
-    playClicked() {
-      this.$root.$emit('uiPlayVideo')
-    }
+    playClicked() { this.$root.$emit('uiPlayVideo') },
+    pauseClicked() { this.$root.$emit('uiPauseVideo') }
   }
 }
 </script>
@@ -12,6 +11,7 @@ export default {
   <div class="row controls full-width">
     <div class="button-group">
       <button type="button" @click="playClicked">Play</button>
+      <button type="button" @click="pauseClicked">Pause</button>
       <button type="button" >Restart</button>
       <button type="button" >RR</button>
       <button type="button" >FF</button>
