@@ -60,6 +60,9 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  # Attach our middleware live reload layer
+  config.middleware.insert_after(ActionDispatch::Static, Rack::LiveReload)
+
   # I'll create assets manually, as I'll be using vue and won't always
   # need them.
   config.generators.assets = false
