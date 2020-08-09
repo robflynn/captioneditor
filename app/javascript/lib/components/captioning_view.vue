@@ -55,8 +55,13 @@ export default {
   <div class="row captioning-view">
     <div>Left</div>
     <div class="full-height col">
-      <div>
-        Font controls and stuff here
+      <div class="button-bar" aria-label="caption styling">
+        <button>Left</button>
+        <button>Center</button>
+        <button>Right</button>
+        <button>Bold</button>
+        <button>Italic</button>
+        <button>Underline</button>
       </div>
 
       <CaptionList :captions="captions" />
@@ -65,6 +70,9 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.button-bar {
+  padding: 10px;
+}
 .captioning-view {
   width: 100%;
 
