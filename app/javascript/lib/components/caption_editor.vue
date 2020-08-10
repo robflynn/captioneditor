@@ -40,8 +40,11 @@ export default {
       await this.insertCaption()
 
       let index = this.captions.length
-      let element = document.querySelector(`[data-caption-index="${index}"]`)
+      let element = document.querySelector(`[data-caption-index="${index - 1}"]`)
+
       element.scrollIntoView()
+
+      this.$root.$emit('captionInserted', index - 1)
     }
   }
 }

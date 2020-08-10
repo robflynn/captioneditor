@@ -1,4 +1,7 @@
 <script>
+import "element-closest"
+import { mapActions } from "vuex"
+
 export default {
   props: {
     classes: {
@@ -14,14 +17,37 @@ export default {
     index: {
       type: Number,
       required: true
+    },
+
+    onClick: {
+      type: Function,
+      required: false,
+    },
+
+    selected: {
+      type: Boolean,
+      default: false
     }
   },
+
+  methods: {
+    ...mapActions([
+      'setSelectedCaption'
+    ]),
+
+    clicked($e) {
+      let block = $e.target.closest('.caption')
+      let index = parseInt(block.dataset.captionIndex)
+
+      this.setSelectedCaption(index)
+    }
+  }
 }
 </script>
 
 <template>
-  <li class="" :class="this.classes" tabindex="0" aria-label="caption block" :data-caption-index="index + 1">
-    <div class="caption">
+  <li :class="this.classes">
+    <div class="caption" @click="clicked" tabindex="0" aria-label="caption block" :data-caption-index="index">
       <header>
         <span class="index">{{ index + 1}}</span>
         <div class="buttons" aria-label="caption options">
@@ -29,6 +55,7 @@ export default {
         </div>
       </header>
       <div class="caption--content">
+        {{ selected }}
         {{ caption.text }}
       </div>
       <footer>

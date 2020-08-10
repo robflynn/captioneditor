@@ -10,6 +10,7 @@ const store = new Vuex.Store({
     videoId: 'aqz-KE-bpKQ',
     playheadPosition: 0,
     duration: 0,
+    selectedCaption: 1,
     captions: [
       {
         id: 1,
@@ -61,6 +62,10 @@ const store = new Vuex.Store({
 
     insertCaption(state, caption) {
       state.captions.push(caption)
+    },
+
+    setSelectedCaption(state, index) {
+      state.selectedCaption = index
     }
   },
 
@@ -82,6 +87,10 @@ const store = new Vuex.Store({
       commit('insertCaption', caption)
 
       return caption
+    },
+
+    setSelectedCaption({ commit }, index) {
+      commit('setSelectedCaption', index)
     }
   }
 })
