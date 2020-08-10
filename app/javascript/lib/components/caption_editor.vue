@@ -1,12 +1,42 @@
 <script>
 import Controls from "@lib/components/controls.vue"
 import CaptioningView from "@lib/components/captioning_view.vue"
+import hokeys from "hotkeys-js"
+import { mapActions } from 'vuex'
 
 export default {
   components: {
     Controls,
     CaptioningView,
   },
+
+  mounted() {
+    let keybinds = {
+      'ctrl+a': () => { this.insertNewCaption() }
+    }
+
+    let keys = Object.keys(keybinds)
+    let keyList = keys.join(',')
+
+    hotkeys(keyList, (event, handler) => {
+      let callback = keybinds[handler.key]
+
+      if (callback) { callback() }
+    })
+  },
+
+  methods: {
+    ...mapActions([
+      'insertCaption'
+    ]),
+
+    async insertNewCaption() {
+      let caption = await this.insertCaption()
+
+      let element = document.querySelector(`[data-caption-id="${caption.id}"]`)
+      element.scrollIntoView()
+    }
+  }
 }
 </script>
 

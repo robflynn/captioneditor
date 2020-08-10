@@ -57,6 +57,10 @@ const store = new Vuex.Store({
 
     setDuration(state, duration) {
       state.duration = duration
+    },
+
+    insertCaption(state, caption) {
+      state.captions.push(caption)
     }
   },
 
@@ -67,6 +71,17 @@ const store = new Vuex.Store({
 
     setDuration({ commit }, duration) {
       commit('setDuration', duration)
+    },
+
+    insertCaption({ commit, state }) {
+      let caption = {
+        id: state.captions.length + 1,
+        text: "new captions"
+      }
+
+      commit('insertCaption', caption)
+
+      return caption
     }
   }
 })
