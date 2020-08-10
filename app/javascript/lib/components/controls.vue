@@ -60,6 +60,7 @@ export default {
   methods: {
     playClicked() { this.$root.$emit('uiPlayVideo') },
     pauseClicked() { this.$root.$emit('uiPauseVideo') },
+    toggleMuteClicked() { this.$root.$emit("uiMuteVideo") },
 
     progressBarClicked($e) {
       let x = $e.x
@@ -87,6 +88,7 @@ export default {
         <button type="button" >Restart</button>
         <button type="button" >RR</button>
         <button type="button" >FF</button>
+        <button type="button" @click="toggleMuteClicked">Mute</button>
       </div>
       <div>
         <div class="currentTime">

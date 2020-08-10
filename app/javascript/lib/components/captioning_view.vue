@@ -54,6 +54,14 @@ export default {
       this.player.play()
     })
 
+    this.$root.$on('uiMuteVideo', () => {
+      if (this.player.isMuted()) {
+        this.player.unMute()
+      } else {
+        this.player.mute()
+      }
+    })
+
     this.$root.$on('uiPauseVideo', () => {
       this.player.pause()
     })
