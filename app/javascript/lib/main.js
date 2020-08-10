@@ -14,7 +14,7 @@ const store = new Vuex.Store({
     duration: 0,
     selectedCaption: 0,
     captions: [
-      createCaption("¡Hola!"),
+      createCaption("¡Hola!", { inTime: "0", outTime: "10"}),
       createCaption('¿Como estas?', { vertical: Position.top }),
       createCaption('♪', { vertical: Position.top, horizontal: Position.right }),
       createCaption('What are we\ngoing to do today?')
@@ -48,8 +48,8 @@ const store = new Vuex.Store({
       commit('setDuration', duration)
     },
 
-    insertCaption({ commit, state }) {
-      let caption = createCaption()
+    insertCaption({ commit, state }, options = {}) {
+      let caption = createCaption(options.text, options)
 
       commit('insertCaption', caption)
 

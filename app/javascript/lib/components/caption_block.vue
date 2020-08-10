@@ -1,6 +1,7 @@
 <script>
 import "element-closest"
 import { mapActions } from "vuex"
+import { secondsToTimecode } from "@lib/utils"
 
 export default {
   props: {
@@ -27,6 +28,16 @@ export default {
     selected: {
       type: Boolean,
       default: false
+    }
+  },
+
+  computed: {
+    formattedInTime() {
+      return secondsToTimecode(this.caption.inTime)
+    },
+
+    formattedOutTime() {
+      return secondsToTimecode(this.caption.outTime)
     }
   },
 
@@ -76,8 +87,8 @@ export default {
       </header>
       <div class="caption--content" :contenteditable="this.selected" :data-selected="this.selected" @input="onInput" v-html="caption.text"></div>
       <footer>
-        <span class="in-time">00:00:00:00</span>
-        <span class="out-time">00:00:00:00</span>
+        <span class="in-time">{{ this.formattedInTime }}</span>
+        <span class="out-time">{{ this.formattedOutTime }}</span>
       </footer>
     </div>
   </li>

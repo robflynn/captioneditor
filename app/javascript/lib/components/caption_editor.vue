@@ -12,7 +12,11 @@ export default {
 
   mounted() {
     let keybinds = {
-      'ctrl+a': () => { this.insertNewCaption() }
+      'ctrl+a': () => {
+        let inTime = this.playheadPosition
+        console.log("==> ", inTime)
+        this.insertNewCaption({ inTime })
+      }
     }
 
     let keys = Object.keys(keybinds)
@@ -27,7 +31,8 @@ export default {
 
   computed: {
     ...mapState([
-      'captions'
+      'captions',
+      'playheadPosition'
     ])
   },
 
@@ -36,8 +41,8 @@ export default {
       'insertCaption'
     ]),
 
-    async insertNewCaption() {
-      await this.insertCaption()
+    async insertNewCaption({ inTime }) {
+      let caption = await this.insertCaption({ inTime })
 
       let index = this.captions.length
       let element = document.querySelector(`[data-caption-index="${index - 1}"]`)
@@ -45,6 +50,7 @@ export default {
       element.scrollIntoView()
 
       this.$root.$emit('captionInserted', index - 1)
+
     }
   }
 }
