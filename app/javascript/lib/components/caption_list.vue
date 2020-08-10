@@ -24,6 +24,12 @@ export default {
   mounted() {
     this.$root.$on('captionInserted', (index) => {
       this.setSelectedCaption(index)
+
+      let body = document.querySelector(`[data-caption-index="${index}"] .caption--content`)
+      body.setAttribute('tabIndex', 0)
+
+      // not sure why this works, look it up later
+      setTimeout(() => { body.focus() }, 0)
     })
   },
 
