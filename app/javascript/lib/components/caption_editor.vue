@@ -16,6 +16,10 @@ export default {
         let inTime = this.playheadPosition
         console.log("==> ", inTime)
         this.insertNewCaption({ inTime })
+      },
+
+      'ctrl+p': () => {
+        this.$root.$emit('uiTogglePlayPause')
       }
     }
 

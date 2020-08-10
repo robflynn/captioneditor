@@ -111,6 +111,16 @@ export default {
       this.player.pause()
     })
 
+    this.$root.$on('uiTogglePlayPause', () => {
+      let state = this.player.getState()
+
+      if (state == 'playing') {
+        this.player.pause()
+      } else {
+        this.player.play()
+      }
+    })
+
     this.$root.$on('uiSeekVideo', (position) => {
       this.player.seek(position)
     })
