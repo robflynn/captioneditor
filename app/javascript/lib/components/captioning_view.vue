@@ -74,45 +74,6 @@ export default {
   data() {
     return {
       player: null,
-
-      captions: [
-        {
-          id: 1,
-          text: "First Caption"
-        },
-        {
-          id: 2,
-          text: "Second Caption\nhas two lines."
-        },
-        {
-          id: 3,
-          text: "Second Caption\nhas two lines."
-        },
-        {
-          id: 4,
-          text: "Second Caption\nhas two lines."
-        },
-        {
-          id: 5,
-          text: "Second Caption\nhas two lines."
-        },
-        {
-          id: 6,
-          text: "Second Caption\nhas two lines."
-        },
-        {
-          id: 7,
-          text: "Second Caption\nhas two lines."
-        },
-        {
-          id: 8,
-          text: "Second Caption\nhas two lines."
-        },
-        {
-          id: 9,
-          text: "Second Caption\nhas two lines."
-        },
-      ]
     }
   }
 }
@@ -137,7 +98,7 @@ export default {
         <button>Underline</button>
       </div>
 
-      <CaptionList :captions="captions" />
+      <CaptionList />
     </div>
   </div>
 </template>

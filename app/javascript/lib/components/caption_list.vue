@@ -1,15 +1,18 @@
 <script>
+import { mapState } from "vuex"
+
 export default {
   props: {
     classes: {
       type: String,
       default: null
     },
+  },
 
-    captions: {
-      type: Array,
-      default: []
-    }
+  computed: {
+    ...mapState([
+      'captions'
+    ])
   }
 }
 </script>
