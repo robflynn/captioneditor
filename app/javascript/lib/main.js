@@ -8,13 +8,29 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    videoId: '4IP_E7efGWE'
+    videoId: 'aqz-KE-bpKQ',
+    playheadPosition: 0,
+    duration: 0,
   },
 
   mutations: {
+    setPlayheadPosition(state, position) {
+      state.playheadPosition = position
+    },
+
+    setDuration(state, duration) {
+      state.duration = duration
+    }
   },
 
   actions: {
+    setPlayheadPosition({ commit }, position) {
+      commit('setPlayheadPosition', position)
+    },
+
+    setDuration({ commit }, duration) {
+      commit('setDuration', duration)
+    }
   }
 })
 

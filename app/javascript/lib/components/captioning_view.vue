@@ -1,6 +1,6 @@
 <script>
 import CaptionList from "@lib/components/caption_list.vue"
-import { mapState } from "vuex"
+import { mapState, mapActions } from "vuex"
 
 const YTPlayer = require('yt-player')
 
@@ -11,6 +11,13 @@ export default {
 
   computed: {
     ...mapState(['videoId'])
+  },
+
+  methods: {
+    ...mapActions([
+      'setPlayheadPosition',
+      'setDuration',
+    ])
   },
 
   watch: {
@@ -24,7 +31,24 @@ export default {
       width: '100%'
     })
 
+    let lastValue = 0
+
+    setInterval(() => {
+      let position = this.player.getCurrentTime()
+
+      if (position != lastValue) {
+        this.setPlayheadPosition(position)
+        lastValue = position
+      }
+    }, 100)
+
     this.player.load(this.videoId)
+
+    this.player.on('playing', () => {
+      let duration = this.player.getDuration()
+
+      this.setDuration(duration)
+    })
 
     this.$root.$on('uiPlayVideo', () => {
       this.player.play()
@@ -32,6 +56,10 @@ export default {
 
     this.$root.$on('uiPauseVideo', () => {
       this.player.pause()
+    })
+
+    this.$root.$on('uiSeekVideo', (position) => {
+      this.player.seek(position)
     })
   },
 
