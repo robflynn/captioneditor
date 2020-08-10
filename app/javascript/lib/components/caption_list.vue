@@ -24,7 +24,7 @@ export default {
 
 <template>
   <ul class="caption-list" :classes="classes" aria-label="caption list">
-    <CaptionBlock v-for="(caption, index) in captions" :key="caption.id" :class="caption-row" :index="index + 1" :caption="caption" />
+    <CaptionBlock v-for="(caption, index) in captions" :key="caption.id" classes="caption-row" :index="index + 1" :caption="caption" />
   </ul>
 </template>
 

@@ -2,7 +2,7 @@
 import Controls from "@lib/components/controls.vue"
 import CaptioningView from "@lib/components/captioning_view.vue"
 import hokeys from "hotkeys-js"
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   components: {
@@ -25,15 +25,22 @@ export default {
     })
   },
 
+  computed: {
+    ...mapState([
+      'captions'
+    ])
+  },
+
   methods: {
     ...mapActions([
       'insertCaption'
     ]),
 
     async insertNewCaption() {
-      let caption = await this.insertCaption()
+      await this.insertCaption()
 
-      let element = document.querySelector(`[data-caption-id="${caption.id}"]`)
+      let index = this.captions.length
+      let element = document.querySelector(`[data-caption-index="${index}"]`)
       element.scrollIntoView()
     }
   }

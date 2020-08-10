@@ -1,7 +1,7 @@
 <script>
 export default {
   props: {
-    class: {
+    classes: {
       type: String,
       default: null
     },
@@ -20,7 +20,7 @@ export default {
 </script>
 
 <template>
-  <li class="" :class="this.class" tabindex="0" aria-label="caption block" :data-caption-index="index + 1">
+  <li class="" :class="this.classes" tabindex="0" aria-label="caption block" :data-caption-index="index + 1">
     <div class="caption">
       <header>
         <span class="index">{{ index + 1}}</span>
