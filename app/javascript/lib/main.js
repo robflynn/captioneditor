@@ -2,6 +2,8 @@ import Vue from 'vue/dist/vue.esm'
 import Vuex from "vuex"
 import App from '@lib/app.vue'
 import "@lib/styles/global.scss"
+import { createCaption } from '@lib/factory'
+import { Position } from '@lib/types.ts'
 
 Vue.use(Vuex)
 
@@ -10,44 +12,12 @@ const store = new Vuex.Store({
     videoId: 'aqz-KE-bpKQ',
     playheadPosition: 0,
     duration: 0,
-    selectedCaption: 1,
+    selectedCaption: 0,
     captions: [
-      {
-        id: 1,
-        text: "First Caption"
-      },
-      {
-        id: 2,
-        text: "Second Caption\nhas two lines."
-      },
-      {
-        id: 3,
-        text: "Second Caption\nhas two lines."
-      },
-      {
-        id: 4,
-        text: "Second Caption\nhas two lines."
-      },
-      {
-        id: 5,
-        text: "Second Caption\nhas two lines."
-      },
-      {
-        id: 6,
-        text: "Second Caption\nhas two lines."
-      },
-      {
-        id: 7,
-        text: "Second Caption\nhas two lines."
-      },
-      {
-        id: 8,
-        text: "Second Caption\nhas two lines."
-      },
-      {
-        id: 9,
-        text: "Second Caption\nhas two lines."
-      },
+      createCaption("¡Hola!"),
+      createCaption('¿Como estas?', { vertical: Position.top }),
+      createCaption('♪', { vertical: Position.top, horizontal: Position.right }),
+      createCaption('What are we\ngoing to do today?')
     ]
   },
 
@@ -79,10 +49,7 @@ const store = new Vuex.Store({
     },
 
     insertCaption({ commit, state }) {
-      let caption = {
-        id: state.captions.length + 1,
-        text: "new captions"
-      }
+      let caption = createCaption()
 
       commit('insertCaption', caption)
 
@@ -90,6 +57,7 @@ const store = new Vuex.Store({
     },
 
     setSelectedCaption({ commit }, index) {
+      console.log('setting it', index)
       commit('setSelectedCaption', index)
     }
   }

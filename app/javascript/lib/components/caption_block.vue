@@ -40,6 +40,26 @@ export default {
       let index = parseInt(block.dataset.captionIndex)
 
       this.setSelectedCaption(index)
+    },
+
+    onInput($e) {
+      let target = $e.target
+      let lines = []
+      let children = target.childNodes
+
+      for (var i = 0; i < children.length; i++) {
+        let node = children[i]
+
+        if (node.nodeType == Node.TEXT_NODE) {
+          lines.push(node.nodeValue)
+        } else {
+          lines.push(node.innerHTML)
+        }
+      }
+
+      let content = lines.join("\n")
+
+      this.$root.$emit('uiUpdateCaptionPreview', content)
     }
   }
 }
@@ -54,10 +74,7 @@ export default {
           <button type="button">X</button>
         </div>
       </header>
-      <div class="caption--content">
-        {{ selected }}
-        {{ caption.text }}
-      </div>
+      <div class="caption--content" :contenteditable="this.selected" :data-selected="this.selected" @input="onInput" v-html="caption.text"></div>
       <footer>
         <span class="in-time">00:00:00:00</span>
         <span class="out-time">00:00:00:00</span>
@@ -109,6 +126,12 @@ export default {
       padding: $padding;
       padding-left: 40px;
       color: #e5e5e5;
+
+      &[contenteditable=true] {
+        background: white;
+        padding: 10px;
+        color: #444;
+      }
     }
 
     footer {

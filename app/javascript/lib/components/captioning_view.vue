@@ -1,6 +1,7 @@
 <script>
 import CaptionList from "@lib/components/caption_list.vue"
 import { mapState, mapActions } from "vuex"
+import { Position } from "@lib/types.ts"
 
 const YTPlayer = require('yt-player')
 
@@ -10,7 +11,51 @@ export default {
   },
 
   computed: {
-    ...mapState(['videoId'])
+    ...mapState([
+      'videoId',
+      'selectedCaption',
+      'captions'
+    ]),
+
+    currentCaption() {
+      if (this.captions.length == 0) { return null }
+      let caption = this.captions[this.selectedCaption]
+
+      return caption
+    },
+
+    currentCaptionText() {
+      if (this.currentCaption) {
+        return this.currentCaption.text.replace("\n", '<br>')
+      }
+    },
+
+    captionPreviewPositionClasses() {
+      let classes = []
+      let caption = this.currentCaption
+
+      if (caption.horizontal == Position.center) {
+        classes.push('cuebox--center')
+      }
+
+      if (caption.horizontal == Position.left) {
+        classes.push('cuebox--start')
+      }
+
+      if (caption.horizontal == Position.right) {
+        classes.push('cuebox--end')
+      }
+
+      if (caption.vertical == Position.bottom) {
+        classes.push('cuebox--bottom')
+      }
+
+      if (caption.vertical == Position.top) {
+        classes.push('cuebox--top')
+      }
+
+      return classes.join(' ')
+    }
   },
 
   methods: {
@@ -69,6 +114,9 @@ export default {
     this.$root.$on('uiSeekVideo', (position) => {
       this.player.seek(position)
     })
+
+    this.$root.$on('uiUpdateCaptionPreview', (text) => {
+    })
   },
 
   data() {
@@ -84,7 +132,14 @@ export default {
     <div class="player-area">
       <h1>The Name Of The Video</h1>
 
-      <div id="player-render-area">
+      <div class="player-wrapper">
+        <div id="player-render-area">
+        </div>
+        <div class="caption-preview-overlay" v-if="currentCaptionText">
+          <div class="cuebox" :class="captionPreviewPositionClasses">
+            <div class="cue"><span v-html="currentCaptionText"></span></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -104,6 +159,65 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.player-wrapper {
+  position: relative;
+
+  .caption-preview-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    padding: 10px;
+    z-index: 1;
+
+    .cuebox {
+      position: absolute;
+      width: 100%;
+
+      &--bottom {
+        bottom: 10px;
+      }
+
+      &--top {
+        top: 10px;
+      }
+
+      &--start {
+        text-align: left;
+      }
+
+      &--end {
+        text-align: right;
+        right: 10px;
+      }
+
+      &--middle {
+        margin: auto 0;
+      }
+
+      &--center {
+        text-align: center;
+      }
+    }
+
+    .cue {
+      display: inline;
+
+      span {
+        padding-left: 15px;
+        padding-right: 15px;
+        background: black;
+        color: white;
+        font-family: monospace;
+        font-size: 16pt;
+      }
+    }
+  }
+}
+
 .player-area {
   margin: 10px;
 }

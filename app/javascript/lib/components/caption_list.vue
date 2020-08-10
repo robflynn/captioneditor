@@ -37,7 +37,6 @@ export default {
 
 <template>
   <ul class="caption-list" :classes="classes" aria-label="caption list">
-    {{ selectedCaption }}
     <CaptionBlock v-for="(caption, index) in captions" :key="caption.id" classes="caption-row" :index="index" :caption="caption" :selected="index == selectedCaption" />
   </ul>
 </template>
